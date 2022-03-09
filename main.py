@@ -1,10 +1,17 @@
 import random
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from Cuadricula import Punto, Cuadricula
 from utils import isPowerOfTwo
 app = FastAPI()
 
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["*"],
+    allow_headers=["*"])
 
 @app.get("/")
 async def root():
